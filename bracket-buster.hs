@@ -50,5 +50,5 @@ bracketFinal = Bracket{children=[bracketRegional1, bracketRegional2]}
 finalWinner = bracketWinner bracketFinal
 
 -- winner of bracketWest winner and bracketEast winner
-bracketWestAndEastWinner = bracketWinner $ Game {home=(bracketWinner bracketWest), away=(bracketWinner bracketEast)}
+bracketWestAndEastWinner = bracketWinner $ Game {home=(bracketWinner bracketSouth), away=(bracketWinner bracketEast)}
 
