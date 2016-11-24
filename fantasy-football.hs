@@ -1,5 +1,13 @@
 import qualified Data.Map as Map
 
+type StandardDeviation = Double
+type Mean = Double
+normal :: Mean -> StandardDeviation -> (Double -> Double)
+normal m v = (\x -> (1.0 / sqrt ((2 * v) * pi)) * exp ((-1) * (x - m)^2 / (2 * v)))
+
+cdfApprox :: (Double -> Double) -> Double -> Double
+cdfApprox f x = foldl (+) 0 (map (f) [-10, -9.9..x])
+  
 data Position = QB | RB | WR | TE | DEF | K deriving (Show, Eq, Ord)
 
 data Player = Player { position :: Position
@@ -64,3 +72,10 @@ def = Player{position=DEF, name="bills", proj=7}
 k = Player{position=K, name="steve", proj=6}
 
 -- maximum $ map sumPlayer $  filter validTeam $ teamCombos 9 [qb, qb2, rb, rb2, rb3, rb4, wr, wr2, wr3, wr4, te, te2, def, k]
+
+sat :: (Int -> Bool) -> Int -> Bool
+sat p = do x <- item
+           if p x then
+             return x
+             else
+             return True
